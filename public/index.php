@@ -1,4 +1,7 @@
 <?php 
+require_once __DIR__ . '/../framework/Database.php';
+$db = new Database();
+
 $routes = require_once __DIR__ . '/../routes/web.php';
 
 $requestUri = $_SERVER['REQUEST_URI'];
