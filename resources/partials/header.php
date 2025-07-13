@@ -7,11 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -240,6 +235,176 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* Title */
+        .post-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #00f0ff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+            transition: all 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .post-title a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00f0ff, #ff0080);
+            transition: width 0.3s ease;
+        }
+
+        .post-title a:hover::after {
+            width: 100%;
+        }
+
+        .post-card:hover .post-title {
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Description */
+        .post-description {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Visit Button */
+        .visit-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .visit-button:hover::before {
+            left: 100%;
+        }
+
+        .visit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
+        }
+
+        .visit-button::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .visit-button:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Pixel Border Effect */
+        .pixel-border {
+            position: relative;
+        }
+
+        .pixel-border::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #00f0ff, #ff0080, #8000ff, #00f0ff);
+            border-radius: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .post-card:hover .pixel-border::before {
+            opacity: 1;
+        }
+        /* Posts Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Article Card */
+        .post-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.8) 100%);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 1rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(0, 240, 255, 0.05) 0%, 
+                transparent 50%, 
+                rgba(255, 0, 128, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .post-card:hover::before {
+            opacity: 1;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 240, 255, 0.5);
+            box-shadow: 
+                0 10px 30px rgba(0, 240, 255, 0.2),
+                0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .post-card > * {
+            position: relative;
+            z-index: 2;
+        }
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
