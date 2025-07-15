@@ -42,7 +42,7 @@ class LinkController {
             $errors = $validator->errors();
             $title = 'Links';
         
-            require_once __DIR__ . '/../../resources/links.template.php';
+            require_once __DIR__ . '/../../resources/create-links.template.php';
 
     }
 
