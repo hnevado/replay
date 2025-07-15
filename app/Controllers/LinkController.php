@@ -16,7 +16,7 @@ class LinkController {
     }
 
     public function store() { 
-
+     
         $validator = new Validator($_POST, [
         'title'         => 'required|min:3|max:255',
         'url'           => 'required|url|max:255',

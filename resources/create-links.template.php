@@ -11,7 +11,7 @@ require_once __DIR__ . '/partials/header.php';
             </div>
 
 <div class="w-full max-w-xl mx-auto">
-    <form method="POST">
+    <form method="POST" action="/links/store">
         <div class="mb-4">
             <label class="text-sm font-semibold text-white">Título</label>
             <div class="mt-2">
