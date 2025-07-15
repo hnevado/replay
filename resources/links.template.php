@@ -24,7 +24,13 @@ require_once __DIR__ . '/partials/header.php';
 
     <?php endforeach; ?>
     <!-- endforeach -->
-
+    <div class="col-span-1 lg:col-span-3">
+        <p class="text-center modern-font">
+            <a href="/links/create" class="visit-button modern-font">
+                Crear enlace
+            </a>
+        </p>    
+    </div>
 </div>
 
 
