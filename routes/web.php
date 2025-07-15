@@ -1,9 +1,15 @@
 <?php
+require __DIR__ . '/../app/Controllers/HomeController.php';
+require __DIR__ . '/../app/Controllers/PostController.php';
+require __DIR__ . '/../app/Controllers/AboutController.php';
+require __DIR__ . '/../app/Controllers/LinkController.php'; 
+require __DIR__ . '/../app/Controllers/BlogController.php';
 
-return [
-    '/'             => 'app/Controllers/home.php',
-    '/post'         => 'app/Controllers/post.php',
-    '/about'        => 'app/Controllers/about.php',
-    '/links'        => 'app/Controllers/links.php',
-    '/links/create' => 'app/Controllers/links-create.php',
-];
+$router->get('/',       [HomeController::class, 'index']);
+$router->get('/post',  [PostController::class, 'show']);
+$router->get('/about',  [AboutController::class, 'index']);
+$router->get('/blog',   [BlogController::class, 'index']);
+
+$router->get('/links',          [LinkController::class, 'index']);
+$router->get('/links/create',   [LinkController::class, 'create']);
+$router->post('/links',         [LinkController::class, 'store']);

@@ -3,7 +3,7 @@ require_once __DIR__ . '/partials/header.php';
 ?>
 
 <?php 
-if ($postId) {
+if (isset($postId)) {
 ?>
 
     <article class="post-card pixel-border">
