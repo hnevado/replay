@@ -1,5 +1,7 @@
 <?php 
 require_once __DIR__ . '/../framework/Database.php';
+require_once __DIR__ . '/../framework/Validator.php';
+
 $db = new Database();
 
 $routes = require_once __DIR__ . '/../routes/web.php';

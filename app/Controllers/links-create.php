@@ -2,40 +2,26 @@
 $title = 'Nuevo enlace';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Process form submission
-    $errors = [];
 
-    $title = trim($_POST['title'] ?? '');
-    $url = trim($_POST['url'] ?? '');
-    $description = trim($_POST['description'] ?? '');
-
-    // Validate title
-    if (empty($title)) {
-        $errors[] = 'El título es obligatorio.';
-    }
-
-    // Validate URL
-    if (empty($url)) {
-        $errors[] = 'La URL es obligatoria.';
-    } elseif (!filter_var($url, FILTER_VALIDATE_URL)) {
-        $errors[] = 'La URL no es válida.';
-    }
-
-    if (empty($description)) {
-        $errors[] = 'La descripción es obligatoria.';
-    } 
+    $validator = new Validator($_POST, [
+        'title'         => 'required|min:3|max:255',
+        'url'           => 'required|url|max:255',
+        'description'   => 'required|min:15|max:500'
+    ]);
        
-    // If there are no errors, save the link (this part is not implemented here)
-    if (empty($errors)) {
-        // Save link logic goes here
-        // Redirect or show success message
+
+    if ($validator->passes()) {
         $db->query(
             "INSERT INTO links (title, url, description) VALUES (?, ?, ?)",
-            [$title, $url, $description]
+            [
+                $_POST['title'], $_POST['url'], $_POST['description']
+            ]
         );
 
         header('Location: /links');
     
+    } else {
+        $errors = $validator->errors();
     }
 }
 
