@@ -4,6 +4,10 @@ class Router {
 
     protected $routes = [];
 
+    public function __construct() {
+        $this->loadRoutes('web');
+    }
+
     public function run() {
     
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH); //PHP_URL_QUERY
@@ -29,5 +33,19 @@ class Router {
 
     public function post(string $uri, array $action) {
         $this->routes['POST'][$uri] = $action;
+    }
+
+
+    public function loadRoutes(string $file) {
+
+        $router = $this;
+        
+        $filePath = __DIR__ . '/../routes/' . $file . '.php';
+
+        if (!file_exists($filePath)) {
+            throw new Exception("Routes file not found: " . $filePath);
+        }
+
+        require_once $filePath;
     }
 }
