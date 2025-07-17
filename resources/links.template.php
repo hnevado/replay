@@ -20,6 +20,7 @@ require_once __DIR__ . '/partials/header.php';
                 <a href="<?php echo htmlspecialchars($link['url'], ENT_QUOTES, 'UTF-8'); ?>" class="visit-button modern-font" target="_blank" rel="noopener noreferrer">
                     Visitar
                 </a>
+                <?php if (!empty($_SESSION['is_admin'])): ?>
                 <form method="POST" action="/links/delete" class="mt-2">
                     <input type="hidden" name="id" value="<?= (int)$link['id'];?>">
                     <input type="hidden" name="_method" value="DELETE">
@@ -28,6 +29,7 @@ require_once __DIR__ . '/partials/header.php';
                         Eliminar
                     </button>
                 </form>
+                <?php endif; ?>
         </article>
 
     <?php endforeach; ?>
