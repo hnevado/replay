@@ -46,4 +46,25 @@ class LinkController {
 
     }
 
+    public function destroy() {
+        $id = $_POST['id'] ?? null;
+        $token = $_POST['_token'] ?? '';
+
+        if (!Csrf::check($token)) {
+            http_response_code(403);
+            exit('CSRF token inválido');
+        }
+
+        if (!$id) {
+            http_response_code(400);
+            exit('Bad Request: ID is required');
+        }
+        
+        $db = new Database();
+        $db->query('DELETE FROM links WHERE id = ?', [$id]);
+
+        header('Location: /links');
+        exit();
+    }
+
 }
