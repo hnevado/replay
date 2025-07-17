@@ -1,5 +1,6 @@
 <?php 
 require_once __DIR__ . '/partials/header.php';
+use Framework\Helper;
 ?>
 
 
@@ -25,7 +26,7 @@ require_once __DIR__ . '/partials/header.php';
             <form method="POST" action="/links/delete">
                 <input type="hidden" name="id" value="<?= (int)$link['id'];?>">
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
+                <input type="hidden" name="_token" value="<?= Helper::csrf_token(); ?>">
                 <button type="submit" class="delete-button modern-font visit-button modern-font" onclick="return confirm('¿Estás seguro de eliminar este enlace?');">
                     Eliminar
                 </button>

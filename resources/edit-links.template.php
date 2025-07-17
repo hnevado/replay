@@ -1,5 +1,6 @@
 <?php 
 require_once __DIR__ . '/partials/header.php';
+use Framework\Helper;
 ?>
 
 
@@ -13,7 +14,7 @@ require_once __DIR__ . '/partials/header.php';
 <div class="w-full max-w-xl mx-auto">
     <form method="POST" action="/links/update?id=<?= (int)$link['id']; ?>">
         <input type="hidden" name="_method" value="PUT">
-        <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
+        <input type="hidden" name="_token" value="<?= Helper::csrf_token() ?>">
         <div class="mb-4">
             <label class="text-sm font-semibold text-white">Título</label>
             <div class="mt-2">

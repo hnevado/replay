@@ -1,8 +1,10 @@
 <?php 
-
-
+namespace App\Controllers;
+use Framework\Database;
+use Framework\Validator;
+use Framework\Helper;
 class LinkController {
-    
+
     protected const LINK_RULES = [
         'title'       => 'required|min:3|max:255',
         'url'         => 'required|url|max:255',
@@ -107,7 +109,7 @@ class LinkController {
         $id = $_POST['id'] ?? null;
         $token = $_POST['_token'] ?? '';
 
-        if (!Csrf::check($token)) {
+        if (!\Framework\Csrf::check($token)) {
             http_response_code(403);
             exit('CSRF token inválido');
         }

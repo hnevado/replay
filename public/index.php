@@ -10,12 +10,18 @@ $ip_permitida = ['127.0.0.1', '::1'];
 if (isset($_GET['admin']) && $_GET['admin'] === 'CLAVESECRETA' && in_array($_SERVER['REMOTE_ADDR'], $ip_permitida)) {
     $_SESSION['is_admin'] = true;
 }
+
+require __DIR__ . '/../bootstrap.php';
+
+use Framework\Router;
+
+
+/*
 require_once __DIR__ . '/../framework/Database.php';
 require_once __DIR__ . '/../framework/Validator.php';
 require_once __DIR__ . '/../framework/Router.php';
 require_once __DIR__ . '/../framework/helpers.php';
-
-$db = new Database();
+*/
 
 $router = new Router();
 

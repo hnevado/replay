@@ -1,5 +1,5 @@
 <?php
-// framework/Csrf.php
+namespace Framework;
 
 class Csrf {
     public static function token() {
