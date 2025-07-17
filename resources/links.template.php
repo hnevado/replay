@@ -21,6 +21,7 @@ require_once __DIR__ . '/partials/header.php';
                     Visitar
                 </a>
                 <?php if (!empty($_SESSION['is_admin'])): ?>
+                
                 <form method="POST" action="/links/delete" class="mt-2">
                     <input type="hidden" name="id" value="<?= (int)$link['id'];?>">
                     <input type="hidden" name="_method" value="DELETE">
@@ -29,6 +30,12 @@ require_once __DIR__ . '/partials/header.php';
                         Eliminar
                     </button>
                 </form>
+
+                <a href="/links/edit?id=<?= (int)$link['id'];?>" class="mt-2 edit-button modern-font visit-button modern-font">
+                    Editar
+                </a>
+
+
                 <?php endif; ?>
         </article>
 

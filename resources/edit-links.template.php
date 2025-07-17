@@ -6,12 +6,14 @@ require_once __DIR__ . '/partials/header.php';
 <div class="text-center mb-16">
                 <h2 class="text-6xl md:text-7xl lg:text-8xl font-bold text-yellow-400 drop-shadow-lg tracking-wider inline-block px-4 py-2 bg-purple-800 border-4 border-yellow-500 shadow-xl relative overflow-hidden">
                     <span class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-700 via-transparent to-purple-900 opacity-75"></span>
-                    Nuevo enlace
+                    Editar enlace
                 </h2>
             </div>
 
 <div class="w-full max-w-xl mx-auto">
-    <form method="POST" action="/links/store">
+    <form method="POST" action="/links/update?id=<?= (int)$link['id']; ?>">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="_token" value="<?= csrf_token(); ?>">
         <div class="mb-4">
             <label class="text-sm font-semibold text-white">Título</label>
             <div class="mt-2">
@@ -19,7 +21,7 @@ require_once __DIR__ . '/partials/header.php';
                         placeholder="Título del enlace"
                         name="title" 
                         class="w-full outline-1 outline-gray-300 rounded-md px-3 py-2 text-white" 
-                        value="<?= htmlspecialchars($_POST['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                        value="<?= htmlspecialchars($_POST['title'] ?? $link['title'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
             </div>
         </div>
 
@@ -30,7 +32,7 @@ require_once __DIR__ . '/partials/header.php';
                         placeholder="https://ejemplo.com"   
                         name="url" 
                         class="w-full outline-1 outline-gray-300 rounded-md px-3 py-2 text-white" 
-                        value="<?= htmlspecialchars($_POST['url'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
+                        value="<?= htmlspecialchars($_POST['url'] ?? $link['url'] ?? '', ENT_QUOTES, 'UTF-8') ?>">
             </div>
         </div>
 
@@ -39,15 +41,14 @@ require_once __DIR__ . '/partials/header.php';
             <div class="mt-2">
                 <textarea name="description" 
                             rows="10" 
-                            class="w-full outline-1 outline-gray-300 rounded-md px-4 py-2 text-white">
-                            <?= htmlspecialchars($_POST['description'] ?? '', ENT_QUOTES, 'UTF-8') ?>
-                        </textarea>
+                            class="w-full outline-1 outline-gray-300 rounded-md px-4 py-2 text-white"><?= htmlspecialchars(trim($_POST['description'] ?? $link['description']) ?? '', ENT_QUOTES, 'UTF-8') ?>
+                </textarea>
             </div>
         </div>
 
         <div class="mt-4">
             <button type="submit" class="visit-button modern-font w-full">
-                Crear
+                Guardar
             </button>
         </div>
     </form>

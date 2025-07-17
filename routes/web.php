@@ -12,6 +12,10 @@ $router->get('/blog',   [BlogController::class, 'index']);
 
 $router->get('/links',              [LinkController::class, 'index']);
 $router->get('/links/create',       [LinkController::class, 'create']);
+$router->get('/links/edit',         [LinkController::class, 'edit']);
+
 $router->post('/links/store',       [LinkController::class, 'store']);
 
 $router->delete('/links/delete',     [LinkController::class, 'destroy']);
+
+$router->put('/links/update',     [LinkController::class, 'update']);
