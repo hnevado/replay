@@ -16,4 +16,13 @@ class Helper {
     public static function root_path(string $path = ''): string {
         return dirname(__DIR__) . '/'. $path;
     }
+
+    public static function request_uri($uri): bool {
+
+        if ($_SERVER['REQUEST_URI'] === $uri) {
+            return true;
+        }
+
+        return false;
+    }
 }
