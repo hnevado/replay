@@ -1,6 +1,7 @@
 <?php 
 namespace App\Controllers;
 use Framework\Database;
+use Framework\Helper;
 class PostController {
     
     public function show($postId) {
@@ -14,6 +15,11 @@ class PostController {
      
         $title = $post->title;
         
-        require_once __DIR__ . '/../../resources/post.template.php';
+        //require_once __DIR__ . '/../../resources/post.template.php';
+
+        Helper::view('post', [
+            'post' => $post,
+            'title' => $title
+        ]);
     }
 }

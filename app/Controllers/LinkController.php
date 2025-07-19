@@ -15,13 +15,22 @@ class LinkController {
         $db = new Database();
         $links = $db->query('SELECT * FROM links ORDER BY id DESC')->get();
         $title = 'Links';
-        
-        require_once __DIR__ . '/../../resources/links.template.php';
+
+        Helper::view('links', [
+            'links' => $links,
+            'title' => $title
+        ]);
+
+        //require_once __DIR__ . '/../../resources/links.template.php';
     }
 
     public function create() {
         $title = 'Nuevo enlace';
-        require_once __DIR__ . '/../../resources/create-links.template.php';
+
+        Helper::view('create-links', [
+            'title' => $title
+        ]);
+        //require_once __DIR__ . '/../../resources/create-links.template.php';
     }
 
     public function edit() {
@@ -40,7 +49,12 @@ class LinkController {
         }
 
         $title = 'Editar enlace';
-        require_once __DIR__ . '/../../resources/edit-links.template.php';
+
+        Helper::view('edit-links', [
+            'link' => $link,
+            'title' => $title
+        ]);
+        //require_once __DIR__ . '/../../resources/edit-links.template.php';
     }   
 
     public function update() {
@@ -75,7 +89,12 @@ class LinkController {
         $errors = $validator->errors();
         $title = 'Editar enlace';
         
-        require_once __DIR__ . '/../../resources/edit-links.template.php';
+        Helper::view('edit-links', [
+            'link' => $link,
+            'errors' => $errors,
+            'title' => $title
+        ]);
+        //require_once __DIR__ . '/../../resources/edit-links.template.php';
     }   
 
     public function store() { 
@@ -100,8 +119,13 @@ class LinkController {
 
             $errors = $validator->errors();
             $title = 'Links';
-        
-            require_once __DIR__ . '/../../resources/create-links.template.php';
+            
+            Helper::view('create-links', [
+              'title' => $title,
+              'errors' => $errors
+            ]);
+
+           // require_once __DIR__ . '/../../resources/create-links.template.php';
 
     }
 
