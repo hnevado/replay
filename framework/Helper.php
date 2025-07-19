@@ -25,4 +25,15 @@ class Helper {
 
         return false;
     }
+
+    public static function config(string $key, $default = null) {
+        static $config = null;
+
+        if ($config === null) {
+            //Solo cargo el fichero la primera vez que se llama a config
+            $config = require self::root_path('config/app.php');
+        }
+        
+        return $config[$key] ?? $default;
+    }
 }
