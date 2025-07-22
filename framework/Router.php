@@ -19,33 +19,52 @@ class Router {
             $method = strtoupper($_POST['_method']);
         }
 
-        $action = $this->routes[$method][$uri] ?? null; //La acción se compone de controlador y método
+        $action = $this->routes[$method][$uri]['action'] ?? null; //La acción se compone de controlador y método
 
         if (!$action) {
             http_response_code(404);
             exit ('Route not found'. $method. ' ' .$uri);
         }
         
+        $middleware = $this->routes[$method][$uri]['middleware'] ?? null;
+
+        if ($middleware) {
+            $middlewareInstance = new $middleware();
+            $middlewareInstance->__invoke();
+        }
+
         [$controller, $method] = $action;
 
         (new $controller())->$method();
 
     }
 
-    public function get(string $uri, array $action) {
-        $this->routes['GET'][$uri] = $action;
+    public function get(string $uri, array $action, string|null $middleware = null) {
+        $this->routes['GET'][$uri] = [
+            'action' => $action, 
+            'middleware' => $middleware
+        ];
     }
 
-    public function post(string $uri, array $action) {
-        $this->routes['POST'][$uri] = $action;
+    public function post(string $uri, array $action, string|null $middleware = null) {
+        $this->routes['POST'][$uri] = [
+            'action' => $action, 
+            'middleware' => $middleware
+        ];
     }
 
-    public function delete(string $uri, array $action) {
-        $this->routes['DELETE'][$uri] = $action;
+    public function delete(string $uri, array $action, string|null $middleware = null) {
+        $this->routes['DELETE'][$uri] = [
+            'action' => $action, 
+            'middleware' => $middleware
+        ];
     }
 
-    public function put(string $uri, array $action) {
-        $this->routes['PUT'][$uri] = $action;
+    public function put(string $uri, array $action, string|null $middleware = null) {
+        $this->routes['PUT'][$uri] = [
+            'action' => $action, 
+            'middleware' => $middleware
+        ];
     }
 
     public function loadRoutes(string $file) {
