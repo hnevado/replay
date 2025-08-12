@@ -3,3 +3,5 @@
 
 <p>Portal web sobre los títulos que marcaron una generación y definieron la industria del gaming tal como la conocemos hoy.
 Portal desarrollado utilizando PHP nativo con Tailwind CSS para su maquetación</p>
+
+<p><img src="https://github.com/hnevado/replay/blob/master/public/img/img1.png"></p>
